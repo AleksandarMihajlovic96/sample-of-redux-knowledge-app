@@ -1,3 +1,4 @@
+import { Grid } from "@mui/material";
 import { Provider } from "react-redux";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { store } from "../state";
@@ -9,16 +10,35 @@ import RepositoriesList from "./RepositoriesList";
 const App = () => {
   return (
     <Provider store={store}>
-      <div className="wrapper">
+      <Grid container spacing={10}>
         <BrowserRouter>
-        <NavBar/>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="profile" element={<Profile />} />
-            <Route path="searchPackage" element={<RepositoriesList />} />
-          </Routes>
+          <Grid
+            item
+            xs={12}
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+          >
+            <NavBar />
+          </Grid>
+          <Grid
+            item
+            container
+            direction="row"
+            xs={12}
+          >
+            <Grid item xs={3} />
+            <Grid item xs={6}>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="profile" element={<Profile />} />
+                <Route path="searchPackage" element={<RepositoriesList />} />
+              </Routes>
+            </Grid>
+            <Grid item xs={3} />
+          </Grid>
         </BrowserRouter>
-      </div>
+      </Grid>
     </Provider>
   );
 };

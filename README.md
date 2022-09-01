@@ -16,6 +16,27 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
+## Commands for installed packages
+
+- `npm install classnames`
+- `npm install @material-ui/core`
+- `npm install @emotion/react`
+- `npm install @emotion/styled`
+- `npm install @material-ui/icons`
+- `npm install @mui/icons-material`
+- `npm install @mui/material`
+- `npm install @mui/styled-engine-sc`
+- `npm install @types/react-dom`
+- `npm install @types/react-redux`
+- `npm install @types/react-router-dom`
+- `npm install axios`
+- `npm install react-dom`
+- `npm install react-redux`
+- `npm install react-router-dom`
+- `npm install redux`
+- `npm install redux-thunk`
+- `npm install styled component`
+
 ## Definition of folders
 
 There are 3 folders inside this project: **components**, **hooks** and **state**.
