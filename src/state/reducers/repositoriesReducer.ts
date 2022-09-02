@@ -1,10 +1,11 @@
-import { ActionType } from "../action-types";
-import { Action } from "../actions";
+import { PackageInterface } from './../models/index';
+import { SearchRepositoriesActionType } from "../action-types";
+import { SearchRepositoriesActions } from "../actions";
 
 interface ReposioriesState {
   loading: boolean;
   error: string | null;
-  data: string[];
+  data: PackageInterface[];
 }
 
 const initialState = {
@@ -17,14 +18,14 @@ const initialState = {
 // is defining the return type
 const repositoriesReducer = (
   state: ReposioriesState = initialState,
-  action: Action
+  action: SearchRepositoriesActions
 ): ReposioriesState => {
   switch (action.type) {
-    case ActionType.SEARCH_REPOSITORIES:
+    case SearchRepositoriesActionType.SEARCH_REPOSITORIES:
       return { loading: true, error: null, data: [] };
-    case ActionType.SEARCH_REPOSITORIES_SUCCESS:
+    case SearchRepositoriesActionType.SEARCH_REPOSITORIES_SUCCESS:
       return { loading: false, error: null, data: action.payload };
-    case ActionType.SEARCH_REPOSITORIES_ERROR:
+    case SearchRepositoriesActionType.SEARCH_REPOSITORIES_ERROR:
       return { loading: false, error: action.payload, data: [] };
     default:
       return state;

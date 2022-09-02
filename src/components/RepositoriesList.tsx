@@ -1,6 +1,6 @@
 import Button from "@material-ui/core/Button";
 import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
-import { Grid, Input } from "@mui/material";
+import { Grid, Input, List, ListItem, ListItemText } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import { useState } from "react";
 import { useActions } from "../hooks/useActions";
@@ -18,6 +18,20 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     searchInput: {
       minWidth: "15.6rem",
+      "& input": {
+        color: "white"
+      }
+    },
+    listItemText: {
+      color: "white",
+      textAlign: "center",
+      "& p": {
+        color: "#E2DFD2",
+      },
+    },
+    button: {
+      color: "red",
+      backgroundColor: "black",
     },
   })
 );
@@ -28,7 +42,7 @@ const RepositoriesList: React.FC = () => {
   const { data, error, loading } = useTypedSelector(
     (state) => state.repositories
   );
-  const { root, padding, searchInput } = useStyles();
+  const { root, padding, searchInput, listItemText, button } = useStyles();
 
   const onSubmit = () => {
     searchRepositories(term);
@@ -39,7 +53,7 @@ const RepositoriesList: React.FC = () => {
     <Grid container spacing={3} className={root} justifyContent="center">
       <Grid item className={padding}>
         <Typography variant="h4" color="common.white">
-          This is Search Repositories component.
+          This is Search Repositories component
         </Typography>
       </Grid>
       <Grid item className={padding}>
@@ -54,7 +68,7 @@ const RepositoriesList: React.FC = () => {
           </Grid>
           <Grid item>
             <Button
-              style={{ color: "red", backgroundColor: "black" }}
+              className={button}
               variant="contained"
               endIcon={<SendIcon />}
               onClick={() => {
@@ -67,9 +81,24 @@ const RepositoriesList: React.FC = () => {
         </Grid>
       </Grid>
       <Grid item className={padding} xs={12}>
+        <Typography variant="h5" color="common.white" textAlign="center">
+          List of found packages:
+        </Typography>
         {error && <h3>{error}</h3>}
         {loading && <h3>Loading...</h3>}
-        {!error && !loading && data.map((name) => <div key={name}>{name}</div>)}
+        {!error &&
+          !loading &&
+          data.map((result) => (
+            <List>
+              <ListItem>
+                <ListItemText
+                  primary={result.name}
+                  secondary={result.version}
+                  className={listItemText}
+                />
+              </ListItem>
+            </List>
+          ))}
       </Grid>
     </Grid>
   );

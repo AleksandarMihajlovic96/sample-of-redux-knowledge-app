@@ -5,6 +5,7 @@ import { store } from "../state";
 import Home from "./Home";
 import NavBar from "./Navbar";
 import Profile from "./Profile";
+import RandomCatFact from "./RandomCatFact";
 import RepositoriesList from "./RepositoriesList";
 
 const App = () => {
@@ -33,6 +34,7 @@ const App = () => {
                 <Route path="/" element={<Home />} />
                 <Route path="profile" element={<Profile />} />
                 <Route path="searchPackage" element={<RepositoriesList />} />
+                <Route path="catFact" element={<RandomCatFact />} />
               </Routes>
             </Grid>
             <Grid item xs={3} />

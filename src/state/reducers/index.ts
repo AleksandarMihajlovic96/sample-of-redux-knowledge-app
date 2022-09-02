@@ -1,8 +1,12 @@
 import { combineReducers } from "redux";
+import catFactReducer from "./catFactReducer";
+import catImgReducer from "./catImgReducer";
 import repositoriesReducer from "./repositoriesReducer";
 
 const reducers = combineReducers({
   repositories: repositoriesReducer,
+  catFact: catFactReducer,
+  catImg: catImgReducer,
 });
 
 export default reducers;
