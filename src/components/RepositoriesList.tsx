@@ -1,11 +1,13 @@
 import Button from "@material-ui/core/Button";
 import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
-import { Grid, Input, List, ListItem, ListItemText } from "@mui/material";
+import { Grid, Input } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import { useState } from "react";
 import { useActions } from "../hooks/useActions";
 import { useTypedSelector } from "../hooks/useTypedSelecter";
 import SendIcon from "@mui/icons-material/Send";
+import DataLoader from "./core/DataLoader";
+import MapRepositories from "./MapRepositories";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -19,14 +21,7 @@ const useStyles = makeStyles((theme: Theme) =>
     searchInput: {
       minWidth: "15.6rem",
       "& input": {
-        color: "white"
-      }
-    },
-    listItemText: {
-      color: "white",
-      textAlign: "center",
-      "& p": {
-        color: "#E2DFD2",
+        color: "white",
       },
     },
     button: {
@@ -42,7 +37,7 @@ const RepositoriesList: React.FC = () => {
   const { data, error, loading } = useTypedSelector(
     (state) => state.repositories
   );
-  const { root, padding, searchInput, listItemText, button } = useStyles();
+  const { root, padding, searchInput, button } = useStyles();
 
   const onSubmit = () => {
     searchRepositories(term);
@@ -50,7 +45,7 @@ const RepositoriesList: React.FC = () => {
   };
 
   return (
-    <Grid container spacing={3} className={root} justifyContent="center">
+    <Grid container spacing={3} className={root} justifyContent="center" alignItems="center">
       <Grid item className={padding}>
         <Typography variant="h4" color="common.white">
           This is Search Repositories component
@@ -84,21 +79,14 @@ const RepositoriesList: React.FC = () => {
         <Typography variant="h5" color="common.white" textAlign="center">
           List of found packages:
         </Typography>
-        {error && <h3>{error}</h3>}
-        {loading && <h3>Loading...</h3>}
-        {!error &&
-          !loading &&
-          data.map((result) => (
-            <List>
-              <ListItem>
-                <ListItemText
-                  primary={result.name}
-                  secondary={result.version}
-                  className={listItemText}
-                />
-              </ListItem>
-            </List>
-          ))}
+      </Grid>
+      <Grid item className={padding} xs={12}>
+        <DataLoader
+          error={error}
+          loading={loading}
+          renderComponent={<MapRepositories list={data} />}
+          loadingText="Please wait while data is loaded."
+        />
       </Grid>
     </Grid>
   );

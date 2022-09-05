@@ -4,6 +4,7 @@ import Typography from "@mui/material/Typography";
 import { useEffect } from "react";
 import { useActions } from "../hooks/useActions";
 import { useTypedSelector } from "../hooks/useTypedSelecter";
+import DataLoader from "./core/DataLoader";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -30,7 +31,7 @@ const RandomCatFact: React.FC = () => {
   useEffect(() => {
     getRandomCatFact();
     getRandomCatImg();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <Grid container spacing={3} className={root} justifyContent="center">
@@ -46,24 +47,24 @@ const RandomCatFact: React.FC = () => {
         </Typography>
       </Grid>
       <Grid item className={padding}>
-        {errorCatFact && <h3>{errorCatFact}</h3>}
-        {loadingCatFact && <h3>Loading...</h3>}
-        {!errorCatFact && !loadingCatFact && (
-          <Grid container direction="row">
-            <Grid item>
-              <Avatar src={catImg} />
-            </Grid>
-            <Grid item>
-              <Typography
-                variant="h6"
-                color="common.white"
-                alignContent="center"
-              >
-                {catFact}
-              </Typography>
-            </Grid>
-          </Grid>
-        )}
+        <DataLoader
+          error={errorCatFact}
+          loading={loadingCatFact}
+          renderComponent={
+            <Typography variant="h6" color="common.white" alignContent="center">
+              {catFact}
+            </Typography>
+          }
+          loadingText="Please wait while data is loaded."
+        />
+      </Grid>
+      <Grid item className={padding}>
+        <DataLoader
+          error={errorCatImg}
+          loading={loadingCatImg}
+          renderComponent={<Avatar src={catImg} />}
+          loadingText="Please wait while image is loaded."
+        />
       </Grid>
     </Grid>
   );
