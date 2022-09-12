@@ -5,6 +5,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import ManageSearchIcon from "@mui/icons-material/ManageSearch";
 import Typography from "@mui/material/Typography";
 import PetsIcon from "@mui/icons-material/Pets";
+import FamilyRestroomIcon from '@mui/icons-material/FamilyRestroom';
 import { Grid } from "@mui/material";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 
@@ -45,6 +46,11 @@ const NavBar: React.FC = () => {
       label: "Cat Fact",
       icon: <PetsIcon fontSize="large" color="error" />,
       link: "/catFact",
+    },
+    {
+      label: "Age Predict",
+      icon: <FamilyRestroomIcon fontSize="large" color="error" />,
+      link: "/agePredict",
     },
   ];
 

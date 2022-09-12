@@ -2,6 +2,7 @@ import { Grid } from "@mui/material";
 import { Provider } from "react-redux";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { store } from "../state";
+import AgePredict from "./AgePredict";
 import Home from "./Home";
 import NavBar from "./Navbar";
 import Profile from "./Profile";
@@ -35,6 +36,7 @@ const App = () => {
                 <Route path="profile" element={<Profile />} />
                 <Route path="searchPackage" element={<RepositoriesList />} />
                 <Route path="catFact" element={<RandomCatFact />} />
+                <Route path="agePredict" element={<AgePredict />} />
               </Routes>
             </Grid>
             <Grid item xs={3} />

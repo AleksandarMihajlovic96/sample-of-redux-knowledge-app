@@ -1,9 +1,10 @@
+import { GetAgePredictActionType } from "./../action-types/index";
 import {
   GetRandomCatFactActionType,
   SearchRepositoriesActionType,
   GetRandomCatImgActionType,
 } from "../action-types";
-import { PackageInterface } from "../models";
+import { AgePredictInterface, PackageInterface } from "../models";
 
 // Search repositories
 interface SearchRepositoriesAction {
@@ -46,21 +47,40 @@ export type GetRandomCatFactActions =
   | GetRandomCatFactSuccessAction
   | GetRandomCatFactErrorAction;
 
-  interface GetRandomCatImgAction {
-    type: GetRandomCatImgActionType.GET_RANDOM_CAT_IMG;
-  }
-  
-  interface GetRandomCatImgSuccessAction {
-    type: GetRandomCatImgActionType.GET_RANDOM_CAT_IMG_SUCCESS;
-    payload: string;
-  }
-  
-  interface GetRandomCatImgErrorAction {
-    type: GetRandomCatImgActionType.GET_RANDOM_CAT_IMG_ERROR;
-    payload: string;
-  }
-  
-  export type GetRandomCatImgActions =
-    | GetRandomCatImgAction
-    | GetRandomCatImgSuccessAction
-    | GetRandomCatImgErrorAction;
+interface GetRandomCatImgAction {
+  type: GetRandomCatImgActionType.GET_RANDOM_CAT_IMG;
+}
+
+interface GetRandomCatImgSuccessAction {
+  type: GetRandomCatImgActionType.GET_RANDOM_CAT_IMG_SUCCESS;
+  payload: string;
+}
+
+interface GetRandomCatImgErrorAction {
+  type: GetRandomCatImgActionType.GET_RANDOM_CAT_IMG_ERROR;
+  payload: string;
+}
+
+export type GetRandomCatImgActions =
+  | GetRandomCatImgAction
+  | GetRandomCatImgSuccessAction
+  | GetRandomCatImgErrorAction;
+
+interface GetAgePredictAction {
+  type: GetAgePredictActionType.GET_AGE_PREDICT;
+}
+
+interface GetAgePredictSuccessAction {
+  type: GetAgePredictActionType.GET_AGE_PREDICT_SUCCESS;
+  payload: AgePredictInterface;
+}
+
+interface GetAgePredictErrorAction {
+  type: GetAgePredictActionType.GET_AGE_PREDICT_ERROR;
+  payload: string;
+}
+
+export type GetAgePredictActions =
+  | GetAgePredictAction
+  | GetAgePredictSuccessAction
+  | GetAgePredictErrorAction;

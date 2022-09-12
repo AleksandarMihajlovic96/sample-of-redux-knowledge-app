@@ -16,3 +16,9 @@ export enum GetRandomCatImgActionType {
   GET_RANDOM_CAT_IMG_SUCCESS = "get_random_cat_img_success",
   GET_RANDOM_CAT_IMG_ERROR = "get_random_cat_img_error"
 }
+
+export enum GetAgePredictActionType {
+  GET_AGE_PREDICT = "get_age_predict",
+  GET_AGE_PREDICT_SUCCESS = "get_age_predict_success",
+  GET_AGE_PREDICT_ERROR = "get_age_predict_error"
+}

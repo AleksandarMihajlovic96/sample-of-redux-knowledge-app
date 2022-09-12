@@ -1,3 +1,5 @@
+import { GetAgePredictActionType } from "./../action-types/index";
+import { GetAgePredictActions } from "./../actions/index";
 import axios from "axios";
 import { Dispatch } from "redux";
 import {
@@ -5,7 +7,11 @@ import {
   GetRandomCatImgActionType,
   SearchRepositoriesActionType,
 } from "../action-types";
-import { GetRandomCatFactActions, GetRandomCatImgActions, SearchRepositoriesActions } from "../actions";
+import {
+  GetRandomCatFactActions,
+  GetRandomCatImgActions,
+  SearchRepositoriesActions,
+} from "../actions";
 
 export const searchRepositories = (term: string) => {
   return async (dispatch: Dispatch<SearchRepositoriesActions>) => {
@@ -71,7 +77,9 @@ export const getRandomCatImg = () => {
     });
 
     try {
-      const { data } = await axios.get("https://api.thecatapi.com/v1/images/search");
+      const { data } = await axios.get(
+        "https://api.thecatapi.com/v1/images/search"
+      );
 
       const catImg = data[0].url;
 
@@ -82,6 +90,28 @@ export const getRandomCatImg = () => {
     } catch (err: any) {
       dispatch({
         type: GetRandomCatImgActionType.GET_RANDOM_CAT_IMG_ERROR,
+        payload: err.message,
+      });
+    }
+  };
+};
+
+export const getAgePredict = (name: string) => {
+  return async (dispatch: Dispatch<GetAgePredictActions>) => {
+    dispatch({
+      type: GetAgePredictActionType.GET_AGE_PREDICT,
+    });
+
+    try {
+      const { data } = await axios.get(`https://api.agify.io/?name=${name}`);
+
+      dispatch({
+        type: GetAgePredictActionType.GET_AGE_PREDICT_SUCCESS,
+        payload: data,
+      });
+    } catch (err: any) {
+      dispatch({
+        type: GetAgePredictActionType.GET_AGE_PREDICT_ERROR,
         payload: err.message,
       });
     }

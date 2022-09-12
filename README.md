@@ -36,6 +36,9 @@ You will also see any lint errors in the console.
 - `npm install redux`
 - `npm install redux-thunk`
 - `npm install styled component`
+- `npm install --save-dev @testing-library/react`
+- `npm install @types/jest @testing-library/react @testing-library/jest-dom jest ts-jest`
+- `npm i jest-environment-jsdom --save-dev`
 
 ## Definition of folders
 
@@ -60,3 +63,11 @@ Inside state folders there multiple subfolders that define Redux and State insid
 **actions** subfolder is used to define an action (invoking, success and error) and to combine those 3.
 
 **reducers** subfolder is used to define an reducer that puts data in state and updates it based on dispatched action.
+
+### __tests__
+
+Inside this folder are the unit test for the components. Unit tests are done using Jest and React testing library and inside jest.config file Typesciprt support is added via the ts-jest package. Also the script for starting tests is:
+`npm run test:watch` 
+or
+`npm run test`
+Depends if you need the watch parameter or not.
